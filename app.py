@@ -2,6 +2,9 @@ import re
 
 from graph.graph import Graph
 
+INPUT_FILE_NAME = "wchain.in"
+OUTPUT_FILE_NAME = "wchain.out"
+
 
 def generate_one_letter_differ_regex(string):
     result_regex_list = []
@@ -24,10 +27,30 @@ def fill_in_graph_with_words(input_graph, input_words_list):
             prev_index -= 1
 
 
+def sort_words_by_length_descending(input_words_list):
+    return sorted(input_words_list, key=lambda string: len(string), reverse=True)
+
+
+def read_words_from_file(filename):
+    output_words = []
+    with open(filename, "r") as input_file:
+        words_number = int(input_file.readline().strip())
+        for line in input_file:
+            output_words.append(line.strip())
+    return output_words
+
+
+def write_data_to_file(filename, data):
+    with open(filename, "w") as output_file:
+        output_file.write(str(data))
+
+
 if __name__ == '__main__':
-    words_list = ["crates", "car", "cats", "crate", "rate", "at", "ate", "tea", "rat", "a"]
-    words_list = sorted(words_list, key=lambda string: len(string), reverse=True)
     graph = Graph()
+    words_list = read_words_from_file(INPUT_FILE_NAME)
+
+    words_list = sort_words_by_length_descending(words_list)
     fill_in_graph_with_words(graph, words_list)
-    res = max([graph.find_longest_path_from(root) for root in graph.get_vertices_with_edge()])
-    print(res)
+    longest_chain = max([graph.find_longest_path_from(root) for root in graph.get_vertices_with_edge()])
+
+    write_data_to_file(OUTPUT_FILE_NAME, longest_chain)
