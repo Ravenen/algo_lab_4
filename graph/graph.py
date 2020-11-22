@@ -14,11 +14,13 @@ class Graph(object):
         return self.adjacencies.keys()
 
     def find_longest_path_from(self, vertex_from: str) -> int:
+        if vertex_from not in self.get_vertices_with_edge():
+            raise ValueError("Vertex does not have edges or does not exist")
         return self.dfs(vertex_from, 1)
 
     def dfs(self, start_node: str, current_path: int) -> int:
         result_path = current_path
-        if start_node not in self.adjacencies.keys():
+        if start_node not in self.get_vertices_with_edge():
             return result_path
         for edge in self.adjacencies[start_node]:
             result_path = max(result_path, self.dfs(edge, current_path + 1))
