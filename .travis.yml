@@ -2,9 +2,10 @@ language: python
 python:
  - "3.8"
 
-stage:
+stages:
   - test
   - name: GitHub Release
+    if: branch = master
 
 install:
  - pip install -r requirements.txt
@@ -22,9 +23,8 @@ jobs:
 
 
   - stage: GitHub Release
+    script: skip
     deploy:
-     if: branch = master
-     script: skip
      provider: releases
      api_key: $GITHUB_OAUTH_TOKEN
      on:
