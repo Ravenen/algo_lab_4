@@ -10,3 +10,10 @@ jobs:
    script: python -m unittest test.test_app
   -
    script: python -m unittest test.test_graph
+  - stage: GitHub Release
+  if: branch = master
+  deploy:
+   provider: releases
+   api_key: $GITHUB_OAUTH_TOKEN
+   on:
+    tags: true

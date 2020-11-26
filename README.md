@@ -1,6 +1,7 @@
 ## Задача: Ланцюжок зі слів
+Код задачi: **WCHAIN**  
 
-Код задачi: **WCHAIN**
+[![Build Status](https://travis-ci.com/Ravenen/algo_lab_4.svg?branch=master)](https://travis-ci.com/Ravenen/algo_lab_4)
 
 Двоє учасникiв грають у лiнгвiстичну гру. На початку гри дано список iз N слiв.
 Перший гравець обирає довiльне слово w1 i викреслює з нього одну довiльну лiтеру
