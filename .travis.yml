@@ -1,17 +1,23 @@
 language: python
 python:
  - "3.8"
+
+stage:
+  - test
+  - name: GitHub Release
+    if: branch = master
+
 install:
  - pip install -r requirements.txt
 
 jobs:
  include:
   - stage: test
+   name: "app functions test"
    script: python -m unittest test.test_app
-  - stage: test
-   script: python -m unittest test.test_graph
+  - script: python -m unittest test.test_graph
+   name: "graph class test"
   - stage: GitHub Release
-  if: branch = master
   deploy:
    provider: releases
    api_key: $GITHUB_OAUTH_TOKEN
