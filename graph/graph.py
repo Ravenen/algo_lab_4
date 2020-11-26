@@ -23,5 +23,5 @@ class Graph(object):
         if start_node not in self.get_vertices_with_edge():
             return result_path
         for edge in self.adjacencies[start_node]:
-            result_path = max(result_path, self.dfs(edge, current_path + 1))
+            result_path = max(result_path, self.dfs(edge, current_path + 1))  # реалізація під капотом?
         return result_path

@@ -30,7 +30,7 @@ def fill_in_graph_with_words(input_graph: Graph, input_words_list: List[str]) ->
 
 
 def sort_words_by_length_descending(input_words_list: List[str]) -> List[str]:
-    return sorted(input_words_list, key=lambda string: len(string), reverse=True)
+    return sorted(input_words_list, key=len, reverse=True)  # реалізація під капотом?
 
 
 def read_words_from_file(filename: str) -> List[str]:
