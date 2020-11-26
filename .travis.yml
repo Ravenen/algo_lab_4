@@ -13,13 +13,17 @@ install:
 jobs:
  include:
   - stage: test
-   name: "app functions test"
-   script: python -m unittest test.test_app
+    script: python -m unittest test.test_app
+    name: "app functions test"
+
+
   - script: python -m unittest test.test_graph
-   name: "graph class test"
+    name: "graph class test"
+
+
   - stage: GitHub Release
-  deploy:
-   provider: releases
-   api_key: $GITHUB_OAUTH_TOKEN
-   on:
-    tags: true
+    deploy:
+     provider: releases
+     api_key: $GITHUB_OAUTH_TOKEN
+     on:
+       tags: true
