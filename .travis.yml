@@ -6,9 +6,9 @@ install:
 
 jobs:
  include:
-  - stage test
+  - stage: test
    script: python -m unittest test.test_app
-  -
+  - stage: test
    script: python -m unittest test.test_graph
   - stage: GitHub Release
   if: branch = master
